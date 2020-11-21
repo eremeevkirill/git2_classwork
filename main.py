@@ -25,7 +25,7 @@ class Prog(QMainWindow):
 
     def draw_flag(self, qp):
         qp.setBrush(QColor(255, 211, 0))
-        S = randint(10, 100)
+        S = randint(10, 500)
         qp.drawEllipse(300 - S / 2, 300 - S / 2, S, S)
 
 
