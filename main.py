@@ -1,6 +1,6 @@
 import sys
-from PyQt5 import uic
-from PyQt5.QtWidgets import QApplication, QMainWindow
+
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton
 from PyQt5.QtGui import QPainter, QColor
 from random import randint
 
@@ -8,9 +8,18 @@ from random import randint
 class Prog(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI.ui', self)
+        self.initUI()
         self.do_paint = False
-        self.pushButton.clicked.connect(self.paint)
+
+    def initUI(self):
+        self.setGeometry(800, 600, 800, 600)
+        self.setFixedSize(800, 550)
+
+        self.btn1 = QPushButton(self)
+        self.btn1.setText('Нажми на меня')
+        self.btn1.resize(125, 25)
+        self.btn1.move(120, 10)
+        self.btn1.clicked.connect(self.paint)
 
     def paintEvent(self, event):
         if self.do_paint:
@@ -24,8 +33,11 @@ class Prog(QMainWindow):
         self.repaint()
 
     def draw_flag(self, qp):
-        qp.setBrush(QColor(255, 211, 0))
-        S = randint(10, 500)
+        N = randint(0, 255)
+        P = randint(0, 255)
+        C = randint(0, 255)
+        qp.setBrush(QColor(N, P, C))
+        S = randint(1, 490)
         qp.drawEllipse(300 - S / 2, 300 - S / 2, S, S)
 
 
